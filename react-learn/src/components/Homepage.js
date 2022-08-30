@@ -1,6 +1,51 @@
+import {react,useState} from 'react'
+import Card from './Card';
+import ListCard from './ListCard';
+import shortid from 'shortid';
 export default function Homepage({name}){
-    return (<div>
-        <h1>Hello From Homepage</h1>
-        <h3>Welcome to our {name}</h3>
-        </div>)
+    const [counter,setCounter]= useState(0);
+        const increase =()=>{setCounter(count=>count+1);};
+    const [userList,setUserList]=useState([]);
+    const decrease =()=>{setCounter(count=>count-1);};
+    const reset =()=>{setCounter(0);};
+        const[clientName,setClientName]=useState('');
+        const handleSubmit = (e) =>{
+            const client = {clientName,counter,id:shortid.generate()};
+            e.preventDefault();
+            console.log(`Form Submitted,${clientName}`);
+            setUserList([...userList,client])
+    }
+
+   
+    
+    
+   console.log(userList);
+    return(
+    <div>
+        <center>
+        <h1>Hello from Homepage</h1>
+        <h3>welcome to our {name}</h3>
+        <hr></hr>
+        <h1>React Counter</h1>
+        <div>
+        <span className='counter_output'>{counter}
+        <div className='btn_container'>
+            <button className='control_btn' onClick={increase}>Add One</button>
+            <button className='control-btn' onClick={reset}>Reset</button>
+            <button className='control-btn' onClick={decrease}>Sub One  </button>
+            
+        </div>
+        </span>
+        <hr></hr>
+        <form onSubmit={handleSubmit}>
+            <input onChange={(e) =>setClientName(e.target.value)}value = {clientName}></input>
+            <button type='submit'>Submit</button>
+        </form>
+        </div>
+        {/* <Card counter={counter}></Card> */}
+        <ListCard userList={userList} setUserList={setUserList}/>
+      
+        
+        </center>
+    </div>)
 }
