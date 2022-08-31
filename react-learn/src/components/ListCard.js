@@ -1,6 +1,6 @@
 
 import Card from "./Card"
-export default function ListCard({userList,setUserList}){
+export default function ListCard({userList,setUserList,historyList,setHistoryList}){
 
 
     return(
@@ -12,7 +12,9 @@ export default function ListCard({userList,setUserList}){
                     userList={userList}
                     setUserList={setUserList}
                     id = {item.id}
-                    item={item}/>
+                    item={item}
+                    setHistoryList={setHistoryList}
+                    historyList={historyList}/>
                 ))
                 }
         </div>

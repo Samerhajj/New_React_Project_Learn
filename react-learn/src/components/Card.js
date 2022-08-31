@@ -1,7 +1,12 @@
-export default function Card({clientName,counter,setUserList,id,userList,item}){
+export default function Card({clientName,counter,setUserList,id,userList,item,setHistoryList,historyList}){
 
 
    const deleteCard =()=>{
+
+    let templist = historyList;
+    console.log("hello from delete card");
+    templist.push(item);
+    //setHistoryList(templist);
     setUserList(userList.filter((identity)=>identity.id!==item.id));
    }
     
@@ -10,15 +15,17 @@ export default function Card({clientName,counter,setUserList,id,userList,item}){
   
     return(
       <>
+      <div className="card" width={200}>
   <div class="card-body">
-    <h5 class="card-title">{clientName} {counter}</h5>
+    <h5 class="card-title">Client Name:{clientName}</h5>
     <div class="row">
                     <div class="col-xs-12">
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <p class="card-text">Number of Coffee: {counter}</p>
                         <button class="btn btn-primary" type="submit">Go somewhere</button>
                         <button class="btn btn-danger" onClick={deleteCard} type="button">Delete</button>
                     </div>
                 </div>
+  </div>
   </div>
  </>
     )

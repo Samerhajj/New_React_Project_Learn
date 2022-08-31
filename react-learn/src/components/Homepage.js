@@ -2,6 +2,7 @@ import {react,useState} from 'react'
 import Card from './Card';
 import ListCard from './ListCard';
 import shortid from 'shortid';
+import HistoryList from './HistoryList';
 export default function Homepage({name}){
     const [counter,setCounter]= useState(0);
         const increase =()=>{setCounter(count=>count+1);};
@@ -16,7 +17,7 @@ export default function Homepage({name}){
             setUserList([...userList,client])
     }
 
-   
+   const [historyList,setHistoryList]=useState([]);
     
     
    console.log(userList);
@@ -43,7 +44,8 @@ export default function Homepage({name}){
         </form>
         </div>
         {/* <Card counter={counter}></Card> */}
-        <ListCard userList={userList} setUserList={setUserList}/>
+        <ListCard userList={userList} setUserList={setUserList} historyList={historyList} setHistoryList={setHistoryList}/>
+        <HistoryList historyList={historyList}></HistoryList>
       
         
         </center>
