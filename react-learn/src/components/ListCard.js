@@ -9,12 +9,16 @@ export default function ListCard({userList,setUserList,historyList,setHistoryLis
                 userList.map((item)=>(
                     <Card counter={item.counter}
                     clientName={item.clientName}
+                    selectC={item.selectC}
+                    isChecked={item.isChecked}
                     userList={userList}
                     setUserList={setUserList}
                     id = {item.id}
                     item={item}
                     setHistoryList={setHistoryList}
-                    historyList={historyList}/>
+                    historyList={historyList}
+                   
+                  />
                 ))
                 }
         </div>

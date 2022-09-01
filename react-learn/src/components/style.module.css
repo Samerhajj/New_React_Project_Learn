@@ -1,0 +1,20 @@
+.st{
+    color:rgb(0, 0, 0);
+    font-family: sans-serif;
+    font-size: 18px;
+}
+.card-body{
+    border: 10px solid green;
+}
+.sc{
+    color:blue;
+    display: flex;
+  align-items: center;
+  justify-content: center;
+  width:100%;
+  background-color: none;    
+}
+.stm{
+    color:gary;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+}

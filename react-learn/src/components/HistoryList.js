@@ -6,11 +6,11 @@ export default function HistoryList({historyList})
 
 return (
     <div>
-        <ul className="list-group">
+        <ul classNameName="list-group">
             {
         historyList.map((m)=>{
             return(
-                <li className="list-group-item">
+                <li classNameName="list-group-item">
                     <History m={m}/>
                 </li>
                 
