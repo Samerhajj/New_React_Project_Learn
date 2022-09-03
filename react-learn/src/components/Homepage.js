@@ -55,7 +55,7 @@ export default function Homepage({name}){
                             <input checked={isChecked} onChange={handleOnChange}
                                 className="form-check-input mt-0" type="checkbox" 
                                 value="" aria-label="Checkbox for following text input"/>
-                            <label >Take Aways</label>
+                            <label >Take Away</label>
                         </div>
                     </div>
 
