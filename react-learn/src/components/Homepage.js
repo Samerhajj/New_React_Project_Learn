@@ -1,54 +1,94 @@
-import {React,useState,useContext, createContext} from 'react'
-import ListCard from './ListCard';
+import {React,useState,createContext,useRef, useEffect,useContext} from 'react'
+
+import CardList from './CardList';
 import shortid from 'shortid';
+import HistoryList from './HistoryList'
 import Select from './Select';
 import styles from "./style.module.css"
+import NavBar from './NavBar';
 
-import HistoryList from './HistoryList';
-export default function Homepage({name}){
+export const UserContext = createContext();//new day
+
+
+export default function Homepage(props){
+    console.log("Home page rendered")
+
+
+
     const [counter,setCounter]= useState(0);
-        const increase =()=>{setCounter(count=>count+1);};
-    const [userList,setUserList]=useState([]);
-    const decrease =()=>{setCounter(count=>count-1);};
-    const reset =()=>{setCounter(0);};
-        const[clientName,setClientName]=useState('');
-        const handleSubmit = (e) =>{
-            const client = {clientName,counter,selectC,isChecked,id:shortid.generate()};
-            e.preventDefault();
-            console.log(`Form Submitted,${clientName}`);
-            setUserList([...userList,client])
-    }
-    const selectContext = createContext();
-
+    const [text,setText] = useState("");
+    const [historyList,setHistoryList]=useState([]);//get value and set history
+    const [ls,setLs]=useState([]);//Main List has all the items
     const [selectC,setSelectC]= useState("");// state of selected value
-   const [historyList,setHistoryList]=useState([]);
-   
-   const [isChecked, setIsChecked] = useState(false);
 
-   const handleOnChange =()=>{
-    setIsChecked(!isChecked);
-   }
+    //Add button functions:
+    const increase =()=>{ setCounter(count=>count+1);};
+    const Decrease =()=>{setCounter(count=>count-1);};
+    const Zero =()=>{setCounter(count=>0);};
+    
+    //text methods :
+    const changedMethod = (event)=>{setText(event.target.value);};
+
+    //handle submit buttion
+    const handleSubmit =(event)=>{
+        event.preventDefault();//Prevent refreshing the page
+        const data = {text,counter,selectC,isChecked,id:shortid.generate()};
+        setLs([...ls,data])
+        setText("")
+    }
+
+    const [isChecked, setIsChecked] = useState(false);
+
+    const handleOnChange = () => {
+        setIsChecked(!isChecked);
+      };
+    
 
 
-   console.log(userList);
-    return(
-    <div>
+
+
+
+    return(    
+    
+    <UserContext.Provider value={{selectC,setSelectC}}>
+
+    <div className='container'>
+    
+
+        <NavBar/>
         <center>
-        <h1>Hello from Homepage</h1>
-        <h3>welcome to our {name}</h3>
-        <hr></hr>
-        <h1>React Counter</h1>
-        <div>
-        <span className='counter_output'>{counter}
-        <div className='btn_container'>
-            <button className='control_btn' onClick={increase}>Add One</button>
-            <button className='control-btn' onClick={reset}>Reset</button>
-            <button className='control-btn' onClick={decrease}>Sub One  </button>
-            <selectContext.Provider value={selectC}>
-             <Select selectC={selectC} setSelectC={setSelectC}/>
-            </selectContext.Provider>
+            <hr/>
+            <form onSubmit={handleSubmit}>
+                <h1>React Counter</h1>
 
-             <div className={styles.sc}>
+                {/* increase , Decrease ,Zero buttons  */}
+                <div className='btn_container m-1'>
+                    <button  type='button' className='btn btn-dark m-1' onClick={Zero}>→Zero←</button>
+                    <button  type='button' className='btn btn-dark m-1' onClick={increase}>Add One</button>
+                    <button  type='button' className='btn btn-dark m-1' onClick={Decrease}>Sub One</button>
+                </div>
+
+                {/* Select Coffee */}
+
+
+                {/* <UserContext.Provider value={{selectC,setSelectC}}> */}
+                    {/* {props.childern} */}
+                                   <Select />                    
+                {/* </UserContext.Provider>  */}
+
+
+
+
+
+                <div className='counter_output m-2'>
+                    <span className={styles.st}><b>{counter}</b></span>
+                    
+                    
+                    
+
+
+                    
+                    <div className={styles.sc}>
                         {/* <div className="input-group-text"> */}
                         <div className="input-group-text">
                             {/* {check box} */}
@@ -58,27 +98,28 @@ export default function Homepage({name}){
                             <label >Take Away</label>
                         </div>
                     </div>
+                    
 
 
 
+                    </div>
+                <div>
+                    <input className='form-control' style={{width:200}} value={text} type="text" onChange={changedMethod} placeholder='Enter Client Name'></input>
+                </div>
 
+                <button type='submit' className='m-3'>Submit</button>
+                
+            </form>
 
-        </div>
-        </span>
-        <hr></hr>
-        <form onSubmit={handleSubmit}>
-            <input onChange={(e) =>setClientName(e.target.value)}value = {clientName}></input>
-            <button type='submit'>Submit</button>
-        </form>
-        </div>
-        {/* <Card counter={counter}></Card> */}
-       
-        <ListCard userList={userList} setUserList={setUserList} historyList={historyList} setHistoryList={setHistoryList}/>
-      
-        <HistoryList historyList={historyList}></HistoryList>
-     
+            {/* Card List Map */}
+            <CardList isChecked={isChecked} setLs={setLs} ls = {ls} historyList={historyList} setHistoryList={setHistoryList}/>
+            
+            {/* History List Map */}
+            <HistoryList historyList={historyList}/>
 
-        
         </center>
-    </div>)
+    </div>
+    </UserContext.Provider> 
+
+    )
 }

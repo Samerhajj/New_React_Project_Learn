@@ -1,41 +1,37 @@
-import styles from "./style.module.css"
+import styles from "./style.module.css";
+import React from "react";
+function Card({isChecked,selectC,id,idx,lsItem,setLs,ls,data,text,counter,setHistoryList,historyList}){
+    console.log("Card rendered")
 
-export default function Card({clientName,counter,setUserList,id,userList,item,setHistoryList,historyList,selectC,isChecked}){
+    const deleteCard =()=>{
+    let tempList = historyList;
+    tempList.push(lsItem)
+    setHistoryList(tempList);
+    setLs( ls.filter((item)=>item.id !== lsItem.id))
+    // console.log(ls)
+    }
 
-
-   const deleteCard =()=>{
-
-    let templist = historyList;
-    console.log("hello from delete card");
-    templist.push(item);
-    //setHistoryList(templist);
-    setUserList(userList.filter((identity)=>identity.id!==item.id));
-   }
-    
-    
-  
     return(
-      <>
-      <div className="card" width={200}>
-  <div className="card-body">
-    <h5 className="card-title">Client Name:{clientName}</h5>
-    <div className="row">
-                    <div className="col-xs-12">
-                    <p className="card-text">Number of Coffee: {counter}</p>
-                    <p className="card-text">Type of Coffee:{selectC}</p>
-                    <p className="card-text"><span  className={styles.st}>Selected Coffee : {selectC}</span></p>
+    <div className="card" width={200}>
+        <div className="card-body">
+
+            <p className="card-title">
+                <span className={styles.st}>Clinet Name : 
+                    <span><b>{text}</b></span>
+                </span>
+            </p>
+
+            <p className="card-text">
+                <span  className={styles.st}>Number of Coffee : {counter}</span>
+            </p>
+
+            <p className="card-text"><span  className={styles.st}>Selected Coffee : {selectC}</span></p>
             {isChecked ? <h6 className={styles.stm}>TakeAway</h6> : <h6 >Sit</h6>}
             <a href="#" className="btn btn-primary m-1">Go somewhere</a>
-
-                   
-
-                        <button className="btn btn-primary" type="submit">Go somewhere</button>
-                        <button className="btn btn-danger" onClick={deleteCard} type="button">Delete</button>
-                    </div>
-                </div>
-  </div>
-  </div>
- </>
+            
+            <button onClick={deleteCard} type="button" className="btn btn-danger ">Delete</button>
+        </div>
+    </div>
     )
-}        
-    
+}
+export default React.memo(Card)

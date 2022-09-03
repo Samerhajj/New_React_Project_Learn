@@ -1,23 +1,24 @@
+import shortid from "shortid";
 import History from "./History";
-export default function HistoryList({historyList})
-{
-  
-    
+import React from "react";
+export default function historyList({historyList}){
+  console.log("History List rendered")
 
 return (
     <div>
-        <ul classNameName="list-group">
-            {
-        historyList.map((m)=>{
-            return(
-                <li classNameName="list-group-item">
-                    <History m={m}/>
-                </li>
-                
-            );
+      <ul className="list-group">
+        {
+        historyList.map((m) => {
+            // console.log("hello from histroyList")
+          return (
+            <li className="list-group-item" key={shortid.generate()}>
+                <History m={m}/>
+            </li>
+          );
         })
-            }
-            </ul>
-    </div>
-);
         }
+      </ul>
+    </div>
+  );
+}
+// export default React.memo(historyList)
