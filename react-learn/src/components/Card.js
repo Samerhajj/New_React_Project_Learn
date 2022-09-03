@@ -17,7 +17,7 @@ function Card({isChecked,selectC,id,idx,lsItem,setLs,ls,data,text,counter,setHis
 
             <p className="card-title">
                 <span className={styles.st}>Clinet Name : 
-                    <span><b>{text}</b></span>
+                    <span><b>{text.current}</b></span>
                 </span>
             </p>
 

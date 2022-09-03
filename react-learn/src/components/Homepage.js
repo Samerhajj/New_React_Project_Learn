@@ -16,7 +16,9 @@ export default function Homepage(props){
 
 
     const [counter,setCounter]= useState(0);
-    const [text,setText] = useState("");
+    // const [text,setText] = useState("");
+    const text = useRef();
+    
     const [historyList,setHistoryList]=useState([]);//get value and set history
     const [ls,setLs]=useState([]);//Main List has all the items
     const [selectC,setSelectC]= useState("");// state of selected value
@@ -27,14 +29,16 @@ export default function Homepage(props){
     const Zero =()=>{setCounter(count=>0);};
     
     //text methods :
-    const changedMethod = (event)=>{setText(event.target.value);};
+    // const changedMethod = (event)=>{setText(event.target.value);};
+    const changedMethod = (event)=>{text.current=event.target.value};
 
     //handle submit buttion
     const handleSubmit =(event)=>{
         event.preventDefault();//Prevent refreshing the page
         const data = {text,counter,selectC,isChecked,id:shortid.generate()};
         setLs([...ls,data])
-        setText("")
+        // setText("");
+        
     }
 
     const [isChecked, setIsChecked] = useState(false);
@@ -58,7 +62,7 @@ export default function Homepage(props){
         <NavBar/>
         <center>
             <hr/>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} ref={text}>
                 <h1>React Counter</h1>
 
                 {/* increase , Decrease ,Zero buttons  */}
@@ -104,7 +108,7 @@ export default function Homepage(props){
 
                     </div>
                 <div>
-                    <input className='form-control' style={{width:200}} value={text} type="text" onChange={changedMethod} placeholder='Enter Client Name'></input>
+                    <input className='form-control' style={{width:200}} ref={text} type="text" onChange={changedMethod} placeholder='Enter Client Name'></input>
                 </div>
 
                 <button type='submit' className='m-3'>Submit</button>
