@@ -7,7 +7,7 @@ function History({m}){
 
     return(
     <>
-        <b>{m.selectC}</b> Order of by "<b>{m.text.current}</b>" with ammount of order : <b>{m.counter}</b>
+        <b>{m.selectC}</b> Order of by "<b>{m.text}</b>" with ammount of order : <b>{m.counter}</b>
         {/* Number of orders : {m.counter }<p>Name of Clinet : {m.text}</p>  */}
     </>
     );

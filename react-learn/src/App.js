@@ -3,7 +3,7 @@ import Header from "./components/Header";
 import Homepage from "./components/Homepage";
 import { BrowserRouter as Router , Route,Routes,Link } from "react-router-dom";
 import NavBar from "./components/NavBar";
-
+import Home from "./components/Home";
 function App() {
   return (
     <Router >
@@ -13,8 +13,9 @@ function App() {
     <Header className="container"/>
     <NavBar/>
     
-            <Routes>
-                    <Route exact path="/" element={<Homepage/>}/>
+            <Routes>\
+                 <Route exact path="/" element={<Home/>}/>
+                    <Route exact path="/order" element={<Homepage/>}/>
                     <Route exact path="/about" element={<AboutUs/>}/>
               </Routes>
       </div>

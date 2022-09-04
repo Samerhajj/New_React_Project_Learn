@@ -12,7 +12,7 @@ function NavBar(){
            <div className={"navbar navbar-expand-lg bg-light "}>
                 <div className="container-fluid">
                     <Link className="navbar-brand" to="/" >Home</Link>
-                    <Link className="navbar-brand" to="/">Order Now</Link>
+                    <Link className="navbar-brand" to="/order">Order Now</Link>
                     <Link className="navbar-brand" to="/about">about us</Link>
                 </div>
            </div>

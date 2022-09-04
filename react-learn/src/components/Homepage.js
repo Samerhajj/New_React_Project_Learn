@@ -1,11 +1,10 @@
-import {React,useState,createContext,useRef, useEffect,useContext} from 'react'
+import {React,useState,createContext} from 'react'
 
 import CardList from './CardList';
 import shortid from 'shortid';
 import HistoryList from './HistoryList'
 import Select from './Select';
 import styles from "./style.module.css"
-import NavBar from './NavBar';
 
 export const UserContext = createContext();//new day
 
@@ -68,7 +67,7 @@ export default function Homepage(props){
         
         <center>
             <hr/>
-            <form onSubmit={handleSubmit} ref={text}>
+            <form onSubmit={handleSubmit}>
                 <h1>React Counter</h1>
 
                 {/* increase , Decrease ,Zero buttons  */}
@@ -105,7 +104,7 @@ export default function Homepage(props){
 
                     </div>
                 <div>
-                    <input className='form-control' style={{width:200}} ref={text} type="text" onChange={changedMethod} placeholder='Enter Client Name'></input>
+                    <input className='form-control' style={{width:200}} value={text}  type="text" onChange={changedMethod} placeholder='Enter Client Name'></input>
                 </div>
 
                 <button type='submit' className='m-3'>Submit</button>
