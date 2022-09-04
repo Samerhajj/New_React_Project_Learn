@@ -18,3 +18,27 @@
     color:gary;
     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
 }
+.aboutUs{
+    display: flex;
+  align-items: center;
+  justify-content: center;
+  width:100%;
+  background-color: none;  
+  margin-top: 20px;  
+  font-size: 28px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  text-align: center;
+}
+.about{
+    color:purple;
+    font-weight: bold;
+    display: flex;
+  align-items: center;
+  justify-content: center;
+  width:100%;
+  background-color: none;  
+  margin-top: 20px;  
+  font-size: 28px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  text-align: center;
+}
