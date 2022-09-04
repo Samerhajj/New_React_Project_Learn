@@ -13,12 +13,14 @@ export const UserContext = createContext();//new day
 export default function Homepage(props){
     console.log("Home page rendered")
 
-
-
     const [counter,setCounter]= useState(0);
-    // const [text,setText] = useState("");
-    const text = useRef();
-    
+
+  const [text, setText] = useState("");//get the text from the input
+
+      const changedMethod = (event)=>{setText(event.target.value);};
+
+
+
     const [historyList,setHistoryList]=useState([]);//get value and set history
     const [ls,setLs]=useState([]);//Main List has all the items
     const [selectC,setSelectC]= useState("");// state of selected value
@@ -30,15 +32,17 @@ export default function Homepage(props){
     
     //text methods :
     // const changedMethod = (event)=>{setText(event.target.value);};
-    const changedMethod = (event)=>{text.current=event.target.value};
+    // const changedMethod = (event)=>{text.current=event.target.value};
 
     //handle submit buttion
     const handleSubmit =(event)=>{
         event.preventDefault();//Prevent refreshing the page
+        changedMethod(event);
         const data = {text,counter,selectC,isChecked,id:shortid.generate()};
         setLs([...ls,data])
-        // setText("");
-        
+       
+        setText("")
+        // text={current:""}
     }
 
     const [isChecked, setIsChecked] = useState(false);
@@ -59,7 +63,9 @@ export default function Homepage(props){
     <div className='container'>
     
 
-        <NavBar/>
+        {/* <NavBar/> */}
+
+        
         <center>
             <hr/>
             <form onSubmit={handleSubmit} ref={text}>
@@ -72,13 +78,9 @@ export default function Homepage(props){
                     <button  type='button' className='btn btn-dark m-1' onClick={Decrease}>Sub One</button>
                 </div>
 
+
                 {/* Select Coffee */}
-
-
-                {/* <UserContext.Provider value={{selectC,setSelectC}}> */}
-                    {/* {props.childern} */}
-                                   <Select />                    
-                {/* </UserContext.Provider>  */}
+                <Select />                    
 
 
 
@@ -86,12 +88,7 @@ export default function Homepage(props){
 
                 <div className='counter_output m-2'>
                     <span className={styles.st}><b>{counter}</b></span>
-                    
-                    
-                    
 
-
-                    
                     <div className={styles.sc}>
                         {/* <div className="input-group-text"> */}
                         <div className="input-group-text">

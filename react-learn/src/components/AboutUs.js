@@ -1,9 +1,19 @@
+import styles from "./style.module.css"
 
 export default function AboutUs (){
     console.log("about us rendered")
+
+        const randomColor = Math.floor(Math.random()*16777215).toString(16);
     return(
-        <div>
-               <h1>This is AboutUs Page</h1>
-               <h2>Sometimes simple works best. Like our coffee, a brand dedicated for brewing the best coffees you could ever taste in your life.
-               </h2>
+        <div >
+            
+               <h1 className={styles.aboutUs}>
+               Hi we are black shift <br/> we are so happy that you choose <br/> our service
+                random number key 
+               <br/>
+                
+                </h1>
+               <span className={styles.about}>
+               {randomColor}
+               </span>
         </div>)}
